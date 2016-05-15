@@ -9,7 +9,7 @@
     "demo"
   ],
   "author": "ipluser",
-  "main": "public/dev/scripts/main.jsx",
+  "main": "public/scripts/main.jsx",
   "scripts": {
     "lint": "eslint 'public/scripts/**/*.@(js|jsx)' *.js",
     "start": "webpack-dev-server --devtool eval --progress --colors --hot --content-base public/build"
