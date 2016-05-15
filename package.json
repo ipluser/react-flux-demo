@@ -1,0 +1,48 @@
+{
+  "name": "react-flux-demo",
+  "version": "0.5.0",
+  "description": "An learning demo that is flux application architecture.",
+  "keywords": [
+    "flux",
+    "react",
+    "react-flux",
+    "demo"
+  ],
+  "author": "ipluser",
+  "main": "public/dev/scripts/main.jsx",
+  "scripts": {
+    "lint": "eslint 'public/scripts/**/*.@(js|jsx)' *.js",
+    "start": "webpack-dev-server --devtool eval --progress --colors --hot --content-base public/build"
+  },
+  "dependencies": {
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.8.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^8.0.0",
+    "eslint-plugin-import": "^1.7.0",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-react": "^5.1.1",
+    "flux": "^2.1.1",
+    "ghooks": "^1.2.1",
+    "html-webpack-plugin": "^2.17.0",
+    "node-sass": "^3.7.0",
+    "open-browser-webpack-plugin": "^0.0.1",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "license": "MIT",
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
+}

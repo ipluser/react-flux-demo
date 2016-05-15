@@ -1,2 +1,2 @@
 # react-flux-demo
-An learn demo that is flux application architecture.
+An learning demo that is flux application architecture.
