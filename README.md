@@ -8,7 +8,7 @@ $ cd react-flux-demo
 $ npm start
 ```
 
-The browser will auto to open a new tab(if not, please visit `http://127.0.0.1:8080`):
+The browser will auto to open a new tab, if not, please visit `http://127.0.0.1:8080`:
 
 ![Demo](public/img/flux__demo.png)
 
@@ -39,7 +39,7 @@ import TodoController from './components/todoController.jsx';
 ReactDOM.render(<TodoController />, document.body);
 ```
 
-The above code use [ReactJS Controller View Pattern](http://blog.andrewray.me/the-reactjs-controller-view-pattern/)，a "controller view" is a top level component that holds all state and passes it to children as props. Let's see ***todoController.jsx***:
+The above code use [ReactJS Controller View Pattern](http://blog.andrewray.me/the-reactjs-controller-view-pattern/)，a `controller view` is a top level component that holds all state and passes it to children as props. Let's see ***todoController.jsx***:
 
 ```js
 // public/scripts/components/todoController.jsx
