@@ -1,36 +1,34 @@
 # react-flux-demo
-An learning demo that is flux application architecture.
+关于`Flux`应用的学习例子。
 
-**Note**: [中文版](README_CN.md)
-
-## Quick Start
+## 快速入门
 ```bash
 $ git clone https://github.com/ipluser/react-flux-demo.git
 $ cd react-flux-demo
 $ npm start
 ```
 
-The browser will auto to open a new tab, if not, please visit `http://127.0.0.1:8080`:
+浏览器将会自动打开一个新的网页标签，如果没有打开，请直接访问 `http://127.0.0.1:8080`：
 
 ![Demo](public/img/flux__demo.png)
 
-## Core Concepts
-Flux applications have four major parts: the dispatcher, the stores, the views, and the actions. 
+## 核心概念
+`Flux`应用主要分为四个主要的部分：`Views`，`Actions`，`Dispatcher`，`Stores`。
 
-| Name | Description |
-|:-----|:------------|
-| Views | React components |
-| Actions | Behavior and action of Views, e.g. `click event` |
-| Dispatcher | Register actions, receive actions and calling callback of data flow |
-| Stores | Managing the Application's state and broadcast an event declaring for Views that their state has changed |
+| 名称 | 描述 |
+|------|-------------|
+| Views | 视图层。 |
+| Actions | 行为动作层，视图层触发的动作，例如`click event`。 |
+| Dispatcher | 分发中心，注册/接受动作，管理数据流向。 |
+| Stores | 数据层，管理应用状态，广播通知`Views`状态发生改变。 |
 
 ![Flux Data Flow](public/img/flux__data-flow.png)
 
-A unidirectional data flow is central to the Flux pattern. The dispatcher, stores and views are independent nodes with distinct inputs and outputs. The actions are simple objects containing the new data and an identifying type property.
+单向数据流是`Flux`应用的核心。`Dispatcher`，`Stores`，`Views`是独立的输入和输出节点，而Action是一个包含数据和动作类型的简单对象。
 
-## Demo Explaination
-### Views
-Open the entry file ***main.jsx***:
+## 解析实例
+### 视图层
+打开项目入口文件***main.jsx***：
 
 ```js
 // public/scripts/main.jsx
@@ -41,7 +39,7 @@ import TodoController from './components/todoController.jsx';
 ReactDOM.render(<TodoController />, document.body);
 ```
 
-The above code use [ReactJS Controller View Pattern](http://blog.andrewray.me/the-reactjs-controller-view-pattern/)，a `controller view` is a top level component that holds all state and passes it to children as props. Let's see ***todoController.jsx***:
+此处代码中采用了[ReactJS Controller View](http://blog.andrewray.me/the-reactjs-controller-view-pattern/)模式，一个`Controller View`是应用中最顶层的组件，它管理着所有应用状态，并以属性方式传递给子组件。接下来我们看看***todoController.jsx***：
 
 ```js
 // public/scripts/components/todoController.jsx
@@ -66,7 +64,7 @@ export default class TodoController extends React.Component {
 }
 ```
 
-In above code, the **TodoController** just assign action for **Todo** component. The **Todo** receive props and render:
+正如你所看到的，**TodoController**仅仅只给**Todo**指定了动作。**Todo**组件接收属性和渲染：
 
 ```js
 // public/scripts/components/todo.jsx
@@ -88,10 +86,10 @@ export default function Todo(props) {
 }
 ```
 
-Once click **todo** button, The **TodoController** will trigger an **addItem** action.
+一旦点击**todo**按钮，**TodoController**将会触发**addItem**动作。
 
-## Actions
-The **TodoAction** carry data and *actionType* property to **Dispatcher** for dipatch data flow:
+## 行为动作层
+**TodoAction**将数据和动作类型传递给**Dispatcher**去分发数据流：
 
 ```js
 // public/scripts/actions/todoAction.js
@@ -110,7 +108,7 @@ class TodoAction {
 export default new TodoAction();
 ```
 
-The **todoConstant.js** is constant object that includes all actionType:
+**todoConstant.js**是一个包含所有动作类型的常量对象:
 
 ```js
 // public/scripts/constants/todoConstant.js
@@ -119,8 +117,8 @@ export default {
 };
 ```
 
-## Dispatcher
-The **Dispatcher** is the central hub that manages all data flow in a Flux application. Each **Store** registers itself and provides a callback:
+## 数据分发中心
+**Dispatcher**是一个分发中心，它管理着应用的所有数据流向。每一个**Store**在这里注册，同时提供一个回调函数：
 
 ```js
 // public/scripts/dispatcher.js
@@ -143,10 +141,10 @@ TodoStore.dispatchToken = AppDispatcher.register(payload => {
 export default AppDispatcher;
 ```
 
-In the above code, when **TodoAction** provides the dispatcher with a new action, the **TodoStore** receive the action via the callbacks in the registry.
+上面代码中可以看到，当**TodoAction**告诉`Dispatcher`发生了一个动作时，**TodoStore**将会通过注册时的回调函数接受动作的行为。
 
-## Stores
-The **TodoStore** contains state and logic. their role is somewhat similar to a *model* in a traditional MVC:
+## 数据层
+**TodoStore**包含状态和业务逻辑。它的职责有点类似MVC中的*model*：
 
 ```js
 // public/scripts/stores/todoStore.js
@@ -183,10 +181,10 @@ class TodoStore extends EventEmitter {
 export default new TodoStore();
 ```
 
-In the above code, **TodoStore** will emit an event to the **Views** when the state is changed.
+当状态发生改变时，**TodoStore**将会通过事件形式通知**Views**。
 
-## Views, again
-Back to **TodoController**, let it initialize application's state and listen the Store's change event:
+## 再看视图层
+再回到**TodoController**中，我们初始化应用的状态，同时监听`Store`的状态改变事件：
 
 ```js
 // public/scripts/components/todoController.jsx
@@ -227,7 +225,7 @@ export default class TodoController extends React.Component {
 }
 ```
 
-Once the **TodoController** receive the state is changed, then it will trigger **Todo** to re-render.
+一旦**TodoController**接受到应用状态改变，将会触发`Todo`重新渲染。
 
 ## References
 - [Facebook Flux](https://facebook.github.io/flux/docs/overview.html)
