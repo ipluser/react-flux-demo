@@ -7,6 +7,7 @@ An learning demo that is flux application architecture.
 ```bash
 $ git clone https://github.com/ipluser/react-flux-demo.git
 $ cd react-flux-demo
+$ npm install
 $ npm start
 ```
 
